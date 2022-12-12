@@ -25,7 +25,7 @@ public class HSMCryptoTool {
             if (! config.isPresent()) {
                 throw new RuntimeException("No PKCS11 config file present: EXPORT HSM=</absolute/filen.name>");
             }
-            this.hsmProvider = new sun.security.pkcs11.SunPKCS11(config.orElse(DEFAULT_CONFIG));
+            this.hsmProvider = new sun.security.pkcs11.SunPKCS11();
             this.hsmKeyStore = KeyStore.getInstance("PKCS11", this.hsmProvider);
             this.hsmKeyStore.load(null, HSM_PIN.toCharArray());
         } catch (KeyStoreException | IOException | CertificateException | NoSuchAlgorithmException ex) {
